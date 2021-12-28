@@ -1,3 +1,4 @@
+cd app/
 python script.py
 service sendmail start
 

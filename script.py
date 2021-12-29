@@ -14,7 +14,6 @@ wb.remove(ws)
 
 with open(fn) as f:
     lines = csv.reader(f)
-    idx=0
     for sym in lines:
         if sym=="":
             break

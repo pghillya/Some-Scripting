@@ -1,6 +1,6 @@
 # Some-Scripting
 
-Brief introduction about this repo: I know what you're thinking-- this may seem like more of a solution in search of a problem, and an overly complex one at that... 
+Brief introduction about this repo: I know what you're thinking-- this may seem like more of a solution in search of a problem, and with an overly complex approach at that... 
 
 I have compiled a report that, to be honest, I don't care TOO much about, but I did this mainly to showcase some of my technical ability
 
@@ -41,5 +41,13 @@ Linux: run: `python3 -m venv venv` (or similar, depending on distro)
 4) `docker build -t stonks .`
 5) `docker run -d --name stonks stonks`
 
+# SIMPLEST way to use this
+
+1) Clone the repo
+2) cd to the proj dir
+3) Windows: run `py script.py`
+
+Linux: run `python3 script.py`
+4) See the .xlsx created in the same directory
 # Pre-reqs
 Docker

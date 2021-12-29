@@ -1,4 +1,4 @@
-dpython script.py
+python script.py
 service sendmail start
 
 echo "Your daily market close summary report" | mutt -e "set from='peter hillyard <autoreports@petersReportServer>'"\

@@ -5,7 +5,7 @@ Brief introduction about this repo: I know what you're thinking-- this may seem 
 I have compiled a report that, to be honest, I don't care TOO much about, but I did this mainly to showcase some of my technical ability
 
 ToDo: add some charts and data for different date ranges (5-day, 10-day, etc...)
-When requirements.txt (or any other files) get updated, trigger rebuild of the container, push to hub, then pull down to server (CI/CD)
+When symbols.csv (or any other files) get updated, trigger rebuild of the container, push to hub, then pull down to server (CI/CD)
 
 Because of the time it takes the MTA (sendmail) to start, it wouldn't scale well if it needed to send multiple times per day, and would make more sense just to leave docker out
 of it since docker isn't entirely necessary-- I execute the script in
@@ -51,3 +51,4 @@ Linux: run `python3 script.py`
 4) See the .xlsx created in the same directory
 # Pre-reqs
 Docker
+

@@ -6,7 +6,10 @@ from openpyxl import Workbook
 # Constant(s)
 today=date.today()
 cur_month=today.month
-month_ago=today.replace(month=(cur_month-1))
+if cur_month==1:
+    month_ago=today.replace(month=12)
+else:
+    month_ago=today.replace(month=(cur_month-1))
 
 # Reformat Dates for hist data URL Parameters
 today=today.strftime("%m/%d/%Y")

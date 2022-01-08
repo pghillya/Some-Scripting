@@ -1,3 +1,4 @@
+#!/bin/bash
 python script.py
 service sendmail start
 

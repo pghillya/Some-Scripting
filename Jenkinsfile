@@ -20,12 +20,10 @@ pipeline {
             steps {
                 /* Minimal for now-- just run the container, 
                 check the exit status, if success, push to hub*/
-
                 echo 'running the container'
                 sh 'docker run --name stonks pghillya/stonks'
 
                 /* Based on Exit Code, determine whether to send new image to docker hub */
-
                 script {
                     EXIT_CODE = sh (
                         script: 'docker inspect stonks --format=\'{{.State.ExitCode}}\'',

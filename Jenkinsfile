@@ -4,13 +4,13 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building python code'
-                buildah bud -t stonks .
+                sh 'buildah bud -t stonks .'
             }
         }
         stage('run') {
             steps {
                 echo 'running the container'
-                podman run --name stonks stonks
+                sh 'podman run --name stonks stonks'
             }
         }
     }

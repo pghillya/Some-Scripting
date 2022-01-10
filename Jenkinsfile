@@ -27,7 +27,7 @@ pipeline {
                         script: 'docker inspect stonks --format=\'{{.State.ExitCode}}\'',
                         returnStdout: true
                     ).trim()
-                    if ( ${EXIT_CODE} == 0 ) {
+                    if ( EXIT_CODE == 0 ) {
                         echo "The build was successful"
                         } else {
                             echo "The build was unsuccessful"

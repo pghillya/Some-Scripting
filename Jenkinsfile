@@ -21,9 +21,24 @@ pipeline {
                 /* Check Exit Code
                 Based on Exit Code, determine whether to send new image to docker hub or not
                 Docker hub stuff comes later */
-                sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\') && \
+
+                script {
+                    EXIT_CODE = sh (
+                        script: 'docker inspect stonks --format=\'{{.State.ExitCode}}\'',
+                        returnStdout: true
+                    ).trim()
+                    script {
+                        if ( $EXIT_CODE == 0) {
+                            echo "The build was successful"
+                            } else {
+                                echo "The build was unsuccessful"
+                            }
+                    }
+                }
+
+                /* sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\') && \
                 if [[ $exit = 0 ]]; then  echo "Build succeeded"; else  \
-                echo "build failed! Image not pushed to hub"; fi'
+                echo "build failed! Image not pushed to hub"; fi' */
                 
             }
         }

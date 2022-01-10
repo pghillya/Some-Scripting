@@ -18,8 +18,7 @@ pipeline {
                 echo 'running the container'
                 //sh 'docker run --name stonks stonks'
 
-                /* Check Exit Code
-                Based on Exit Code, determine whether to send new image to docker hub or not
+                /* Based on Exit Code, determine whether to send new image to docker hub or not
                 Docker hub stuff comes later */
 
                 script {
@@ -27,18 +26,15 @@ pipeline {
                         script: 'docker inspect stonks --format=\'{{.State.ExitCode}}\'',
                         returnStdout: true
                     ).trim()
-                    echo "${EXIT_CODE}"
+
                     if ( EXIT_CODE == '0' ) {
-                        echo "The build was successful"
+                        echo "The build was successful with exit code ${EXIT_CODE}"
+                        /* use shell script to send docker image to docker hub-- need to
+                        configure local environment variables for Jenkins*/
                         } else {
                             echo "The build was unsuccessful with exit code ${EXIT_CODE}"
                         }
-                    
                 }
-
-                /* sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\') && \
-                if [[ $exit = 0 ]]; then  echo "Build succeeded"; else  \
-                echo "build failed! Image not pushed to hub"; fi' */
             }
         }
     }

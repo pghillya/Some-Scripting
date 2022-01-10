@@ -9,11 +9,11 @@ pipeline {
         stage('build') {
             steps {
                 // Here we'll make sure we aren't accumulating images
-                //sh 'docker rm stonks || true && docker rmi stonks || true'
+                sh 'docker rm stonks || true && docker rmi pghillya/stonks || true'
 
                 // Build Docker image
                 echo 'building docker image'
-                //sh 'docker build -t stonks .'
+                sh 'docker build -t pghillya/stonks .'
             }
         }
         stage('run') {
@@ -21,14 +21,14 @@ pipeline {
                 /* Minimal for now-- just run the container, check the logs*/
 
                 echo 'running the container'
-                //sh 'docker run --name stonks stonks'
+                sh 'docker run --name stonks pghillya/stonks'
 
                 /* Based on Exit Code, determine whether to send new image to docker hub or not
                 Docker hub stuff comes later */
 
                 script {
                     EXIT_CODE = sh (
-                        script: 'docker inspect stonks --format=\'{{.State.ExitCode}}\'',
+                        script: 'docker inspect pghillya/stonks --format=\'{{.State.ExitCode}}\'',
                         returnStdout: true
                     ).trim()
 

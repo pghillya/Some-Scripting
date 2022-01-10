@@ -1,5 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        any
+    }
+    environment {
+        DOCKER_USER="pghillya"
+        DOCKER_PASS=credentials('docker_hub_pass')
+    }
+    
     stages {
         stage('build') {
             steps {
@@ -31,6 +38,8 @@ pipeline {
                         echo "The build was successful with exit code ${EXIT_CODE}"
                         /* use shell script to send docker image to docker hub-- need to
                         configure local environment variables for Jenkins*/
+                        sh "docker login -u $DOCKER_USER -p $DOCKER_PASS"
+                        sh "docker push pghillya/stonks:latest"
                         } else {
                             echo "The build was unsuccessful with exit code ${EXIT_CODE}"
                         }

@@ -19,7 +19,7 @@ pipeline {
                 sh 'docker run --name stonks stonks'
 
                 // Check Exit Code
-                sh 'exit=\`docker inspect stonks --format=\'{{.State.ExitCode}}\'\`'
+                sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\')'
                 echo 'exit status was $exit'
 
                 // Based on Exit Code, determine whether to send new image to docker hub or not

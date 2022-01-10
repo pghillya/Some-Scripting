@@ -19,7 +19,7 @@ pipeline {
                 sh 'docker run --name stonks stonks'
 
                 // Check Exit Code
-                sh 'docker inspect 61c6 --format='{{.State.ExitCode}}''
+                sh 'docker inspect 61c6 --format={.State.ExitCode}'
             }
         }
     }

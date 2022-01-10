@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-    }
+    agent any
     environment {
         DOCKER_USER="pghillya"
         DOCKER_PASS=credentials('docker_hub_pass')

@@ -18,13 +18,13 @@ pipeline {
                 echo 'running the container'
                 sh 'docker run --name stonks stonks'
 
-                // Check Exit Code
-                sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\')'
-                echo 'exit status was $exit'
-
-                // Based on Exit Code, determine whether to send new image to docker hub or not
-                // Docker hub stuff comes later
-                sh 'if [[ $exit = 0 ]]; then         echo "Build succeeded"; else         echo "build failed! Image not pushed to hub"; fi'
+                /* Check Exit Code
+                Based on Exit Code, determine whether to send new image to docker hub or not
+                Docker hub stuff comes later */
+                sh 'exit=$(docker inspect stonks --format=\'{{.State.ExitCode}}\') && \
+                if [[ $exit = 0 ]]; then         echo "Build succeeded"; else         \
+                echo "build failed! Image not pushed to hub"; fi'
+                
             }
         }
     }

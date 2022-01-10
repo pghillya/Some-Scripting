@@ -3,6 +3,14 @@ from bs4 import BeautifulSoup
 from datetime import date
 from openpyxl import Workbook
 
+
+
+
+
+
+# Test excpetion in pipeline
+raise(Exception)
+
 # Constant(s)
 today = date.today()
 cur_month = today.month

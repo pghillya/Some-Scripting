@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building python code'
-                sh 'buildah bud --format docker -f Dockerfile -t stonks .'
+                sh 'docker build -t stonks .'
             }
         }
         stage('run') {

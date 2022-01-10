@@ -3,14 +3,21 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                // Here we'll make sure we aren't accumulating images
+                sh 'docker rm stonks && docker rmi stonks'
+
+                // Build Docker image
                 echo 'building python code'
                 sh 'docker build -t stonks .'
             }
         }
         stage('run') {
             steps {
+                /* Minimal for now-- just run the container, check the logs*/
+
                 echo 'running the container'
-                sh 'podman run --name stonks stonks'
+                sh 'docker run --name stonks stonks'
+                sh 'docker ps'
             }
         }
     }

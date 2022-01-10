@@ -28,10 +28,10 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     echo "${EXIT_CODE}"
-                    if (EXIT_CODE=='0') {
+                    if ( EXIT_CODE == '0' ) {
                         echo "The build was successful"
                         } else {
-                            echo "The build was unsuccessful"
+                            echo "The build was unsuccessful with exit code ${EXIT_CODE}"
                         }
                     
                 }

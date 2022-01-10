@@ -7,7 +7,7 @@ pipeline {
                 sh 'docker rm stonks || true && docker rmi stonks || true'
 
                 // Build Docker image
-                echo 'building python code'
+                echo 'building docker image'
                 sh 'docker build -t stonks .'
             }
         }
@@ -19,7 +19,12 @@ pipeline {
                 sh 'docker run --name stonks stonks'
 
                 // Check Exit Code
-                sh 'docker inspect stonks --format=\'{{.State.ExitCode}}\''
+                sh 'exit=\`docker inspect stonks --format=\'{{.State.ExitCode}}\'\`'
+                echo 'exit status was $exit'
+
+                // Based on Exit Code, determine whether to send new image to docker hub or not
+                // Docker hub stuff comes later
+                sh 'if [[ $exit = 0 ]]; then         echo "Build succeeded"; else         echo "build failed! Image not pushed to hub"; fi'
             }
         }
     }

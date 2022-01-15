@@ -1,14 +1,30 @@
-FROM python:3.8
+FROM alpine:latest AS builder
 
-# Take care of dependencies
-RUN apt-get update && apt-get install -y mutt sendmail
-COPY ./requirements.txt app/
-RUN pip install -r app/requirements.txt
-
-# Copy source files
-COPY . /app
-
-# Initialize final container
+########################
+# Builder stage         #
+# Most of the hard work #
+########################
 WORKDIR /app
+RUN apk update && apk add python3 py3-pip ssmtp dos2unix
+COPY ./requirements.txt /app/requirements.txt
 
-CMD [ "bash", "start.sh" ]
+# Mail stuff #
+RUN rm /etc/ssmtp/ssmtp.conf
+COPY ./ssmtp.conf /etc/ssmtp/ssmtp.conf
+# For testing locally-- Git can easily handle my line endings on commit :)
+RUN dos2unix /etc/ssmtp/ssmtp.conf
+
+# Finish building by installing deps
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+
+########################
+# Initialize final stage #
+########################
+FROM builder AS final
+WORKDIR /app
+COPY . /app
+# Because I'm developing in a Win machine :( 
+RUN dos2unix /app/*
+
+CMD [ "sh", "./start.sh" ]

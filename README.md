@@ -9,7 +9,7 @@ ToDo: add some charts and data for different date ranges (5-day, 10-day, etc...)
 ### With this version, I've made some improvements:
 - slimmer docker image
 - no need to wait on an MTA (sendmail) to start, so it's faster
-- the .xlsx doesn't send properly yet, but that's next on my TODO :)
+- the output.xlsx produced from this script only sends properly if you remove the sample file before building  :)
 
 
 

@@ -1,12 +1,22 @@
-import requests, csv
+import requests, csv, logging, sys
 from bs4 import BeautifulSoup
 from datetime import date
 from openpyxl import Workbook
 
+# Logging
+logger = logging.getLogger()
+handler = logging.FileHandler('logfile.log')
+logger.addHandler(handler)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+handler.setFormatter(formatter)
 
+# Start
+logger.info('Starting python script!')
 
 def run_report():
-    # Constant(s)
+    """#####################
+    # Variable definitions #
+    #####################"""
     today = date.today()
     cur_month = today.month
     if cur_month == 1:
@@ -96,10 +106,11 @@ def run_report():
                 ws.append(row)
 
     wb.save(f"BasicReport-{date.today()}.xlsx")
-    print("created worksheets: " + str(wb.sheetnames))
+    logger.info("created worksheets: " + str(wb.sheetnames))
 
 try:
     run_report()
     print("success")
 except:
+    logger.info(sys.exc_info())
     print("there was an error")

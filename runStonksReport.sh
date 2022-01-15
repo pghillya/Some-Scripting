@@ -7,4 +7,4 @@ git pull
 docker rm stonks
 docker rmi stonks
 docker build -t stonks .
-docker run -d --name stonks stonks
+docker run --name stonks stonks

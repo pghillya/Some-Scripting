@@ -6,10 +6,11 @@ I have compiled a report that, to be honest, is not particularly fancy. I did th
 
 ToDo: add some charts and data for different date ranges (5-day, 10-day, etc...)
 
-Because of the time it takes the MTA (sendmail) to start, it wouldn't scale well if it needed to send very many times per day (takes about 3 minutes total to run), and would make more sense just to leave docker out
-of it since docker isn't entirely necessary-- However, it does effectively make this a cross-platform solution. (One would simply need to change the file extension of 'runStonksReport.sh' to 'runStonksReoprt.bat' and implement as a windows scheduled task instead of a cron-- possibly need to remove the shebang from the .bat as well.)
+### With this version, I've made some improvements:
+- slimmer docker image
+- no need to wait on an MTA (sendmail) to start, so it's faster
+- the .xlsx doesn't send properly yet, but that's next on my TODO :)
 
-I intend to build upon this report to make it more robust and meaningful, but for now, please feel free to give your critique.
 
 
 # How I intended for this project to be used

@@ -8,6 +8,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                
+                // In case local Jenkins is messing up
+                sh 'DOCKER_CERT_PATH=/certs/client/'
+                
                 // Here we'll make sure we aren't accumulating images
                 sh 'docker rm stonks || true && docker rmi pghillya/stonks || true'
 
